@@ -1,12 +1,4 @@
 job('seed') {
-    scm {
-
-    }
-
-    triggers {
-        scm 'H/5 * * * *'
-    }
-
     steps {
         gradle 'clean test'
         dsl {
