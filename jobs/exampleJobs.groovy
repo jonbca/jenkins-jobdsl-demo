@@ -99,5 +99,15 @@ Closure myGit(projectName) {
 
 
 // Add stuff to a job
-def myJob = job('my-job')
+def myJob = job('my-job-integration')
 SomeUtilities.integrationJob(myJob, '')
+
+
+// Create a view
+listView('integration-jobs') {
+    description('All integration jobs')
+
+    jobs {
+        regex(/^.*-integration$/)
+    }
+}
