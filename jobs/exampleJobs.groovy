@@ -1,7 +1,7 @@
 import utilities.SomeUtilities
 
 // A simple build job
-mavenJob ('test-job') {
+mavenJob ('test-job-renamed') {
     mavenInstallation('maven-3.3.9')
 
     scm {
