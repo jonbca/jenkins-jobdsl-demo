@@ -20,32 +20,32 @@ mavenJob ('test-job') {
 
 
 
-//
-//
-//
-//
-//
-//
-//// Multiple build jobs with parameters
-//['some-repo-m', 'another-repo-m', 'yet-another-repo-m'].each {
-//    job("${it}-build") {
-//        wrappers {
-//            environmentVariables(
-//                    SOME_VARIABLE: 'someValue',
-//                    ANOTHER_VARIABLE: 'another-value'
-//            )
-//        }
-//
-//        scm {
-//            git "https://foo.com/some-group/${it}.git"
-//        }
-//
-//        steps {
-//            gradle('clean build')
-//        }
-//    }
-//}
-//
+
+
+
+
+
+
+// Multiple build jobs with parameters
+['some-repo-m', 'another-repo-m', 'yet-another-repo-m'].each {
+    job("${it}-build") {
+        wrappers {
+            environmentVariables(
+                    SOME_VARIABLE: 'someValue',
+                    ANOTHER_VARIABLE: 'another-value'
+            )
+        }
+
+        scm {
+            git "https://foo.com/some-group/${it}.git"
+        }
+
+        steps {
+            gradle('clean build')
+        }
+    }
+}
+
 //
 //
 //
