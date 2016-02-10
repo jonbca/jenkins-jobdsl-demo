@@ -106,15 +106,15 @@ Closure myGit(projectName) {
 //
 //
 //// Add stuff to a job
-//def myJob = job('my-job-integration')
-//SomeUtilities.integrationJob(myJob, '')
-//
-//
-//// Create a view
-//listView('integration-jobs') {
-//    description('All integration jobs')
-//
-//    jobs {
-//        names('my-job-integration', 'some-repo', 'test-job')
-//    }
-//}
+def myJob = job('my-job-integration')
+SomeUtilities.integrationJob(myJob, 'some description')
+
+
+// Create a view
+listView('integration-jobs') {
+    description('All integration jobs')
+
+    jobs {
+        names('my-job-integration', 'some-repo-build-with-git-function', 'test-job-build-with-git-function')
+    }
+}
