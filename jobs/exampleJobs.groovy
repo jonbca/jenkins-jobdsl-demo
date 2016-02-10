@@ -13,6 +13,12 @@ mavenJob ('test-job-renamed') {
     }
 
     goals('clean install -DskipTests')
+
+    wrappers {
+        credentialsBinding {
+            usernamePassword('FOO', 'bc29864a-f172-4459-a3f8-75b5ac2c9822')
+        }
+    }
 }
 
 
