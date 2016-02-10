@@ -59,34 +59,36 @@ mavenJob ('test-job') {
 //
 //
 //
-//// Factor out URL generation
-//Closure myGit(projectName) {
-//    return {
-//        git {
-//            remote {
-//                url "https://foo.com/some-group/${projectName}"
-//                credentials '30541887-abf1-4788-b071-d7c801f2beb5'
-//            }
-//        }
-//    }
-//}
-//
-//['some-repo', 'another-repo', 'yet-another-repo'].each {
-//    job("${it}-build-with-git-function") {
-//        wrappers {
-//            environmentVariables(
-//                    SOME_VARIABLE: 'someValue',
-//                    ANOTHER_VARIABLE: 'another-value'
-//            )
-//        }
-//
-//        scm myGit(it)
-//
-//        steps {
-//            gradle('clean build')
-//        }
-//    }
-//}
+// Factor out URL generation
+Closure myGit(projectName) {
+    return {
+        git {
+            remote {
+                url "https://foo.com/some-group/${projectName}"
+                credentials '30541887-abf1-4788-b071-d7c801f2beb5'
+            }
+        }
+    }
+}
+
+['some-repo', 'another-repo', 'yet-another-repo'].each {
+    def repoName = it
+
+    job("${it}-build-with-git-function") {
+        wrappers {
+            environmentVariables(
+                    SOME_VARIABLE: 'someValue',
+                    ANOTHER_VARIABLE: 'another-value'
+            )
+        }
+
+        scm myGit(repoName)
+
+        steps {
+            gradle('clean build')
+        }
+    }
+}
 //
 //
 //
