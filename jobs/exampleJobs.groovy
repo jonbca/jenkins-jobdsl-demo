@@ -8,6 +8,10 @@ mavenJob ('test-job') {
         git 'https://github.com/google/guava.git'
     }
 
+    triggers {
+        cron('@daily')
+    }
+
     goals('clean install -DskipTests')
 }
 
