@@ -28,6 +28,7 @@ mavenJob ('test-job') {
 
 // Multiple build jobs with parameters
 ['some-repo-m', 'another-repo-m', 'yet-another-repo-m'].each {
+    def repoName = it
     job("${it}-build") {
         wrappers {
             environmentVariables(
@@ -37,7 +38,7 @@ mavenJob ('test-job') {
         }
 
         scm {
-            git "https://foo.com/some-group/${it}.git"
+            git "https://foo.com/some-group/${repoName}.git"
         }
 
         steps {
